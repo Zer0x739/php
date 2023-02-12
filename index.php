@@ -1,24 +1,28 @@
 <?php
-// Přijetí dat z HTTP požadavku
-$data = json_decode(file_get_contents('php://input'), true);
-// Zpracování dat
-$password = generate_password($data);
-// Odeslání hesla
-echo json_encode(['password' => $password]);
-function generate_password($data) {
-    // Získání požadavku na délku hesla z dat
-    $length = $data['length'];
-    // Inicializace proměnných pro heslo
-    $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    $numbers = '0123456789';
-    $symbols = '!@#$%^&*()_+-=[]{}|;:\'",.<>/?';
-    $password = '';
-    // Sestavení řetězce znaků, ze kterých se bude heslo generovat
-    $chars = $uppercase . $lowercase . $numbers . $symbols;
-    // Generování hesla
-    for ($i = 0; $i < $length; $i++) {
-        $password .= $chars[rand(0, strlen($chars) - 1)];
+$dataTypes = ["int", "string", "float", "bool", "array"];
+$setValues = [25, 8.2, 0];
+
+$classCode = "<?php\nrequire 'Experiment.php';\n\nclass Conversion{\n";
+
+foreach ($dataTypes as $value1) {
+    foreach ($dataTypes as $value2) {
+        $methodCode = "    public static function ${value1}TO${value2}(\$$value1): $value2 {\n";
+        $methodCode .= "        return \$$value1;\n    }\n\n";
+        $classCode .= $methodCode;
     }
-    return $password;
 }
+
+$classCode .= "}";
+
+foreach ($setValues as $val) {
+    foreach ($dataTypes as $from) {
+        foreach ($dataTypes as $to) {
+            $methodName = "${from}TO${to}";
+            $code = "\$marsh = Conversion::$methodName($val);\n";
+            $code .= "echo '$from TO $to (Value = $val) = ' . var_export(\$marsh, true) . \"\\n\";\n\n";
+            echo $code;
+        }
+    }
+}
+
+file_put_contents("vysledek.php", $classCode);
