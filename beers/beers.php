@@ -6,21 +6,11 @@ usort($beers, function($a, $b) {
     return $a['alcohol'] <=> $b['alcohol'];
 });
 
-echo "<table>
-        <thead>
-            <tr>
-                <th>Značka</th>
-                <th>Název</th>
-                <th>Alkohol</th>
-            </tr>
-        </thead>
-        <tbody>";
 foreach ($beers as $beer) {
-    echo "<tr>
-            <td>{$beer['brand']}</td>
-            <td>{$beer['name']}</td>
-            <td>{$beer['alcohol']} %</td>
-        </tr>";
+    echo '<tr>';
+    echo '<td>' . $beer->brand . '</td>';
+    echo '<td>' . $beer->name . '</td>';
+    echo '<td>' . $beer->alcohol . '</td>';
+    echo '</tr>';
 }
-echo "</tbody></table>";
 ?>
