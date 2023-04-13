@@ -8,9 +8,9 @@ usort($beers, function($a, $b) {
 
 foreach ($beers as $beer) {
     echo '<tr>';
-    echo '<td>' . $beer->brand . '</td>';
-    echo '<td>' . $beer->name . '</td>';
-    echo '<td>' . $beer->alcohol . '</td>';
+    echo '<td>' . $beer['brand'] . '</td>';
+    echo '<td>' . $beer['name'] . '</td>';
+    echo '<td>' . $beer['alcohol'] . '</td>';
     echo '</tr>';
 }
 ?>
