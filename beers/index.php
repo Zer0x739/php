@@ -32,6 +32,18 @@
     </style>
 </head>
 <body>
-    <?php include("beers.php"); ?>
+<h1>Seznam piv</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Značka</th>
+				<th>Název</th>
+				<th>Obsah alkoholu (%)</th>
+			</tr>
+			<?php include("beers.php"); ?>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 </body>
 </html>
