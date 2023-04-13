@@ -1,9 +1,9 @@
 <?php
-$data = file_get_contents('https://random-data-api.com/api/v2/beer/random_beer?size=10');
+$data = file_get_contents('https://random-data-api.com/api/v2/beers?size=10');
 
 $beers = json_decode($data, true);
 usort($beers, function($a, $b) {
-    return $a['alcohol'] <=> $b['alcohol'];
+    return $a['alcohol'] > $b['alcohol'];
 });
 
 foreach ($beers as $beer) {
