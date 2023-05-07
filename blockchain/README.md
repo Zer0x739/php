@@ -37,3 +37,7 @@ Metoda getBlocks vrátí pole všech bloků v řetězci, isValid ověří platno
 ## Licence
 
 Tento software je poskytován "tak jak je" a Zer0x739 odmítá všechny záruky s ohledem na tento software, včetně všech předpokládaných záruk obchodovatelnosti a vhodnosti. V žádném případě nebude Zer0x739 odpovědný za jakékoliv zvláštní, přímé, nepřímé nebo následné škody či jakékoliv škody vzniklé ze ztráty používání, dat nebo zisku, ať již v případě konání, nebo akce nebo v souvislosti s používáním nebo výkonem tohoto softwaru.
+
+##UML Class Diagram
+
+![UML Class Diagram](https://github.com/Zer0x739/php/blob/main/blockchain/UML%20Class%20Diagram.jpg)
