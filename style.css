@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(128, 128, 128);
+}
+
+.calculator {
+    width: 200px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid blueviolet;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+}
+
+input[type="text"] {
+    width: 93%;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 20px;
+}
