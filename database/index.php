@@ -52,6 +52,9 @@ if ($error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database</title>
     <style>
+        body {
+            background-color: grey;
+        }
         table {
             border-collapse: collapse;
         }
@@ -62,6 +65,7 @@ if ($error) {
     </style>
 </head>
 <body>
+<center>
     <?php if ($result->num_rows > 0); ?>
         <table>
             <tr>
@@ -95,7 +99,7 @@ if ($error) {
     </p>
     <input type="submit" value="Submit" name="submit">
 </form>
-
+</center>
 </body>
 </html>
 
