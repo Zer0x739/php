@@ -10,17 +10,18 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$Jmeno = $_REQUEST['Jmeno'];
-$Prjimeni = $_REQUEST['Prijimeni'];
-
+$Jmeno = $_POST['Jmeno'];
+$Prijimeni = $_POST['Prijimeni'];
+$Id = $_POST['Id'];
 
 $sql = "SELECT id, Jmeno, Prijimeni FROM osoby";
 $result = $conn->query($sql);
 
+echo $Id;
 echo $Jmeno;
 echo $Prijimeni;
 
-$sql = "INSERT INTO osoby VALUES ('$Jmeno','$Prijimeni')" 
+$sql = "INSERT INTO osoby (Id, Jmeno, Prijimeni) VALUES ($Id,'$Jmeno','$Prijimeni')";
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +58,10 @@ $sql = "INSERT INTO osoby VALUES ('$Jmeno','$Prijimeni')"
             <?php endwhile; ?>
         </table>
 <form action="" method="post">
+    <p>
+        <label for="Id">Id:</label>
+        <input type="text" name="Id" id="Id">
+    </p>
     <p>
         <label for="Jmeno">Jmeno:</label>
         <input type="text" name="Jmeno" id="Jmeno">
