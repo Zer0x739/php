@@ -1,3 +1,4 @@
+
 <?php
 $servername = "localhost";
 $username = "php_user";
@@ -10,8 +11,17 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', 1); 
+
 $Jmeno = $_POST['Jmeno'];
 $Prijmeni = $_POST['Prijmeni'];
+
+if (isset($_POST['delete'])) {
+    $deleteId = $_POST['delete'];
+    $deleteSql = "DELETE FROM osoby WHERE id = '$deleteId'";
+    $conn->query($deleteSql);
+}
 
 $sql = "SELECT id, Jmeno, Prijmeni FROM osoby";
 $result = $conn->query($sql);
@@ -30,6 +40,7 @@ if ($error) {
 } else {
     $sql = "INSERT INTO osoby (Jmeno, Prijmeni) VALUES ('$Jmeno','$Prijmeni')";
     $conn->query($sql);
+    header("Refresh:0");
 }
 ?>
 
@@ -57,12 +68,19 @@ if ($error) {
                 <th>Id</th>
                 <th>Jmeno</th>
                 <th>Prijmeni</th>
+                <th>Smazat</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["Jmeno"]; ?></td>
                     <td><?php echo $row["Prijmeni"]; ?></td>
+                    <td>
+                        <form method="post" style="display:inline;">
+                            <input type="hidden" name="delete" value="<?php echo $row['id']; ?>">
+                            <input type="submit" value="smazat">
+                        </form>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         </table>
