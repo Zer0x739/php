@@ -11,17 +11,26 @@ if ($conn->connect_error) {
 }
 
 $Jmeno = $_POST['Jmeno'];
-$Prijimeni = $_POST['Prijimeni'];
-$Id = $_POST['Id'];
+$Prijmeni = $_POST['Prijmeni'];
 
-$sql = "SELECT id, Jmeno, Prijimeni FROM osoby";
+$sql = "SELECT id, Jmeno, Prijmeni FROM osoby";
 $result = $conn->query($sql);
+?>
 
-echo $Id;
-echo $Jmeno;
-echo $Prijimeni;
-
-$sql = "INSERT INTO osoby (Id, Jmeno, Prijimeni) VALUES ($Id,'$Jmeno','$Prijimeni')";
+<?php
+    $required = array('Jmeno', 'Prijmeni');    
+    $error = false;
+foreach($required as $field) {
+  if (empty($_POST[$field])) {
+    $error = true;
+  }
+}
+if ($error) {
+  
+} else {
+    $sql = "INSERT INTO osoby (Jmeno, Prijmeni) VALUES ('$Jmeno','$Prijmeni')";
+    $conn->query($sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +39,7 @@ $sql = "INSERT INTO osoby (Id, Jmeno, Prijimeni) VALUES ($Id,'$Jmeno','$Prijimen
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Database</title>
     <style>
         table {
             border-collapse: collapse;
@@ -47,31 +56,28 @@ $sql = "INSERT INTO osoby (Id, Jmeno, Prijimeni) VALUES ($Id,'$Jmeno','$Prijimen
             <tr>
                 <th>Id</th>
                 <th>Jmeno</th>
-                <th>Prijimeni</th>
+                <th>Prijmeni</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["Jmeno"]; ?></td>
-                    <td><?php echo $row["Prijimeni"]; ?></td>
+                    <td><?php echo $row["Prijmeni"]; ?></td>
                 </tr>
             <?php endwhile; ?>
         </table>
 <form action="" method="post">
     <p>
-        <label for="Id">Id:</label>
-        <input type="text" name="Id" id="Id">
-    </p>
-    <p>
         <label for="Jmeno">Jmeno:</label>
         <input type="text" name="Jmeno" id="Jmeno">
     </p>
     <p>
-        <label for="Prijimeni">Prijimeni:</label>
-        <input type="text" name="Prijimeni" id="Prijimeni">
+        <label for="Prijmeni">Prijmeni:</label>
+        <input type="text" name="Prijmeni" id="Prijmeni">
     </p>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" name="submit">
 </form>
+
 </body>
 </html>
 
