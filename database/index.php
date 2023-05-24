@@ -10,8 +10,17 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$Jmeno = $_REQUEST['Jmeno'];
+$Prjimeni = $_REQUEST['Prijimeni'];
+
+
 $sql = "SELECT id, Jmeno, Prijimeni FROM osoby";
 $result = $conn->query($sql);
+
+echo $Jmeno;
+echo $Prijimeni;
+
+$sql = "INSERT INTO osoby VALUES ('$Jmeno','$Prijimeni')" 
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +55,18 @@ $result = $conn->query($sql);
                     <td><?php echo $row["Prijimeni"]; ?></td>
                 </tr>
             <?php endwhile; ?>
-        </table>   
+        </table>
+<form action="" method="post">
+    <p>
+        <label for="Jmeno">Jmeno:</label>
+        <input type="text" name="Jmeno" id="Jmeno">
+    </p>
+    <p>
+        <label for="Prijimeni">Prijimeni:</label>
+        <input type="text" name="Prijimeni" id="Prijimeni">
+    </p>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
 
