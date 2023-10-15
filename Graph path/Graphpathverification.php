@@ -12,7 +12,7 @@ class Graph
     public function hasPath($start, $end)
     {
         if (!array_key_exists($start, $this->graph) || !array_key_exists($end, $this->graph)) {
-            return false; // Start nebo end uzel neexistuje
+            return false;
         }
 
         $visited = array();
@@ -26,7 +26,7 @@ class Graph
                 $visited[] = $node;
 
                 if ($node == $end) {
-                    return true; // Cesta byla nalezena
+                    return true; 
                 }
 
                 foreach ($this->graph[$node] as $neighbor) {
@@ -37,11 +37,10 @@ class Graph
             }
         }
 
-        return false; // Cesta nebyla nalezena
+        return false;
     }
 }
 
-// Příklad použití
 $graph = new Graph([
     'A' => ['B', 'C'],
     'B' => ['A', 'D', 'E'],
